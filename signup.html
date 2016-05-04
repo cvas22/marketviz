@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>Market Viz</title>
+<link rel="shortcut icon" href="img/shortcut.png">
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/small-business.css" rel="stylesheet">
+<link href ="css/footer.css" rel="stylesheet">
+
+<script type="text/javascript">
+//anonymous function is a function which doesn't have a name
+var $ = function(x){
+	return document.getElementById(x);
+}
+var createXMLHttp = function(){
+  //job of this function is to create an XMLHttpRequest object; this helps your js code to send information to a service and get information from a service. 
+  if(window.XMLHttpRequest){
+      xHttp = new XMLHttpRequest();
+  }else{
+      xHttp = new ActiveXObject("Microsoft/XMLHttp");
+  } 
+  return xHttp;
+}
+var userOnBlurHandle = function(){
+	if($("userId").value.length <5){
+		//innerHTML will replace * part enclosed within span tags with id userIdError
+		$("userIdError").innerHTML = "User name has to be at least 5 characters long.";
+	}else{
+		var urlOfService = 'checkUser.php?userName='+$("userId").value;
+		var XMLHttp = createXMLHttp();
+		XMLHttp.open("GET",urlOfService);
+		XMLHttp.send();
+		XMLHttp.onreadystatechange = function(){
+			if(XMLHttp.readyState==4){
+				var response = XMLHttp.responseText;
+				if(response=="0"){
+					$("userIdError").innerHTML = "service didnt get username";
+				}else if(response=="1"){
+					$("userIdError").innerHTML = "username not available";
+				}else{
+					$("userIdError").innerHTML = "username available";
+				}
+			}
+		}
+		
+	}
+}
+var buttonClickHandle = function(){
+	var flag = 1;
+	if($("userId").value.length <5){
+		flag = 0;
+	}
+	
+	if($("pwdId").value.length <5){
+		flag = 0;
+	}
+	
+	if($("pwdId").value != $("pwdId2").value){
+		$("pwdId2Error").innerHTML = "Please check that you've confirmed your password!";
+		flag =0;
+	}
+    //index of returns the position of the string @ inside email. If it doesn't find @ in email, then it returns -1
+	if($("emailId").value <6 || $("emailId").value.indexOf("@")<0){
+		$("emailIdError").innerHTML = "email is not correct.";
+		flag = 0; 
+	}
+	
+	if($("phoneId").value.length <10){
+	   $("phoneIdError").innerHTML = "phone number should be atleast 10 digits";
+	   flag = 0;
+	}
+	//if variable flag has value TRUE then submit the form; 
+	if(flag==1){
+		$("formId").submit();
+		
+	}
+}
+var emailOnBlurHandle = function(){
+	if($("emailId").value <6 || $("emailId").value.indexOf("@")<0){
+		$("emailIdError").innerHTML = "email is not correct.";
+	}else{
+		$("emailIdError").innerHTML = "*";
+	}
+}
+
+var pwdOnBlurHandle = function(){
+	if($("pwdId").value.length <5){
+       $("pwdIdError").innerHTML = "paasword should be atleast 5 characters.";
+    }else {
+		$("pwdIdError").innerHTML = "*";
+    }
+}
+
+window.onload = function(){
+	// $("userId") replaces document.getElementById("userId") because we defined $ to be so
+	$("userId").onblur = userOnBlurHandle;
+	$("buttonId").onclick = buttonClickHandle;
+	$("emailId").onblur = emailOnBlurHandle; 
+	$("pwdId").onblur = pwdOnBlurHandle;
+}
+
+</script>
+</head>
+<body background = "http://vvf.cms.digital-ridge.com/media/565007/Vilarpac_website_background.jpg">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="">
+        </a>
+            
+    <!-- Collect the nav links, forms, and other content for toggling -->
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+             <li>
+                 <a href="contact.html">Contact</a>
+             </li>
+			<li>
+                 <a href="admin.php">Admin</a>
+            </li>
+		</ul>
+				
+     </div>
+<!-- /.navbar-collapse -->
+</div>
+</nav>
+<p> After signup, please login from the home page.</p>
+<form method="post" id='formId' action="process_signup.php">
+<table>
+<tr>
+<td><label for="userId">Username</label></td> 
+<td><input type="text" name="userName" id="userId"></td>
+<td><span id="userIdError">*</span></td><br>
+</tr>
+<tr>
+<td><label for="pwdId">Password</label> </td>
+<td><input type="password" name="pwd" id="pwdId"></td>
+<td><span id="pwdIdError">*</span><br></td>
+</tr>
+<tr>
+<td><label for="pwdId2">Confirm Password</label> </td>
+<td><input type="password" name="pwd2" id="pwdId2"></td>
+<td><span id="pwdId2Error">*</span></td><br>
+</tr>
+<tr>
+<td><label for="emailId">Email</label></td> 
+<td><input type="text" name="emailName" id="emailId"></td>
+<td><span id="emailIdError">*</span></td><br>
+</tr>
+<tr>
+<td><label for="phoneId">Phone</label></td> 
+<td><input type="text" name="phone" id="phoneId"></td>
+<td><span id="phoneIdError">*</span></td><br>
+</tr>
+<tr>
+<td><input type='button' id='buttonId' value='Submit'></td>
+</tr>
+</table>
+</form>
+<footer>
+     <p><font color ="white"> Copyright &copy; Market Viz 2016 </font></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<html>
+<head>
+
+<link rel="shortcut icon" href="img/shortcut.png">
+<title>Market Viz</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/small-business.css" rel="stylesheet">
+
+<script type="text/javascript">
+var slideimages = new Array() // create new array to preload images
+slideimages[0] = new Image() // create new instance of image object
+slideimages[0].src = "img/h1.jpg" // set image src property to image path, preloading image in the process
+slideimages[1] = new Image()
+slideimages[1].src = "img/h2.png"
+slideimages[2] = new Image()
+slideimages[2].src = "img/h3.jpg"
+slideimages[3] = new Image()
+slideimages[3].src = "img/h4.png"
+slideimages[4] = new Image()
+slideimages[4].src = "img/h5.png"
+</script>
+</head>
+
+<body background = "http://vvf.cms.digital-ridge.com/media/565007/Vilarpac_website_background.jpg">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="">
+        </a>
+            
+    <!-- Collect the nav links, forms, and other content for toggling -->
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+             <li>
+                 <a href="contact.html">Contact</a>
+             </li>
+			<li>
+                 <a href="adminlogin.php">Admin</a>
+            </li>
+		</ul>
+				
+     </div>
+<!-- /.navbar-collapse -->
+</div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+            <div class="col-md-8">
+                <img class="img-responsive img-rounded" src="img/h1.jpg" alt="" id="s1" width ="900" height ="350">
+			</div>
+			
+<script type="text/javascript">
+
+//variable that will increment through the images
+var step=0
+
+function slideit(){
+ //if browser does not support the image object, exit.
+ if (!document.images)
+  return
+ document.getElementById('s1').src = slideimages[step].src
+ if (step<4)
+  step++
+ else
+  step=0
+ //call function "slideit()" every 2.5 seconds
+ setTimeout("slideit()",2500)
+}
+
+slideit()
+
+</script>
+
+        <!-- Heading Row -->
+       
+		
+            <!-- /.col-md-8 -->
+            <div class="col-md-4">
+                <h1><font color ="brown">MARKET DATA VISUALIZATION</font></h1>
+                <p>Let the best data visualization provide you the insights required to make the effective business decisions. Let them drive the revenue growth.  </p>
+                <form action="process_login.php" method="post">
+				<label for="userId">Username</label> 
+				<input type="text" name="userName" id="userId"><br>
+				
+				<label for="pwdId">Password</label> 
+				<input type="password" name="pwd" id="pwdId">
+			
+				<input type='submit' value='login'>
+				</form>
+				<!-- /.<a class="btn btn-primary btn-md" href="process_login.php">login</a><br> -->
+				<h5>New User?<a class="btn btn-primary btn-sm" href="signup.html">Sign up now! </a></h5>
+				
+				<!-- /.col-md-4 -->
+        </div>
+
+<div class="row">
+</div>
+<hr>
+  
+        <div class="row">
+            <div class="col-md-4">
+                <h2><font color ="brown">Bar chart</font></h2>
+                <p>A chart that presents grouped data with rectangular bars with lengths proportional to the values that they represent. The bars can be plotted vertically or horizontally.</p>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
+                <h2><font color ="brown">Doughnut Chart</font></h2>
+                <p>A doughnut chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. In a doughnut chart, the arc length of each slice is proportional to the quantity it represents.</p>
+            </div>
+			<!-- /.col-md-4 -->
+            <div class="col-md-4">
+                <h2><font color ="brown">Line graph</font></h2>
+                <p>A line graph is useful in displaying data or information that changes continuously over time. The points on a line graph are connected by a line. Another name for a line graph is a line chart.</p>
+            </div>
+			<div class="col-md-4">
+                <h2><font color ="brown">Diverging Stacked Bar</font></h2>
+                <p>Diverging stacked bar charts are great for showing the spread of negative and positive values, such as Strongly Disagree to Strongly Agree and because they align to each other around the midpoint, they handle some of the criticism of regular stacked bar charts, which is that it is difficult to compare the values of the categories in the middle of the stack.</p>
+            </div>
+			<div class="col-md-4">
+                <h2><font color ="brown">Chord Diagram</font></h2>
+                <p>A chord diagram is a graphical method of displaying the inter-relationships between data in a matrix. The data is arranged radially around a circle with the relationships between the points typically drawn as arcs connecting the data together.The format can be aesthetically pleasing, making it a popular choice in the world of data visualization.</p>
+            </div>
+			<div class="col-md-4">
+                <h2><font color ="brown">Multiple-line Graph</font></h2>
+                <p>A line graph that displays two or more sets of data at once for easy comparison purposes.</p>
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Market Viz 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
